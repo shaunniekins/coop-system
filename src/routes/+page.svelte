@@ -17,9 +17,20 @@
 	const handleTabChange = (tab: string) => {
 		activeTab = tab; // Update the active tab based on the selected tab
 	};
+
+	let darkTheme: boolean = false;
+
+	const toggleTheme = () => {
+		darkTheme = !darkTheme;
+	};
 </script>
 
-<div class="flex justify-center lg:justify-between items-center h-screen w-screen select-none">
+<div
+	class={`flex justify-center lg:justify-between items-center h-screen w-screen select-none ${
+		darkTheme === true ? 'bg-[#030711]' : 'bg-white-100'
+	}
+  ${darkTheme === true ? 'text-white' : ''}`}
+>
 	<div class="h-screen w-1/2 relative hidden lg:block">
 		<img
 			src="business-image.jpg"
@@ -79,7 +90,9 @@
 							/>
 							<!-- <Input id="user_password" type="password" placeholder="Password" class="mb-1" />
 					<p class="text-xs mb-5">Forgot Password?</p> -->
-							<Button class="font-semibold rounded-2xl">Login</Button>
+							<a href="/dashboard" class="flex flex-col">
+								<Button class="font-semibold rounded-2xl">Login</Button>
+							</a>
 						</TabsContent>
 						<TabsContent value="signup" class="flex flex-col">
 							<Input
@@ -108,3 +121,18 @@
 		</div>
 	</div>
 </div>
+
+<button class="fixed top-4 right-4 p-2 bg-gray-800 text-white rounded-lg" on:click={toggleTheme}>
+	<svg
+		class="w-6 h-6"
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path d="M4 6h16M4 12h16M4 18h16" />
+	</svg>
+</button>
